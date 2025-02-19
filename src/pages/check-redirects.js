@@ -1,27 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import RedirectChecker from "./redirect-checker";
 
 export default function CheckRedirects() {
   const pageTwoRef = useRef(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pageTwoRef.current) {
-        const pageTwoTop = pageTwoRef.current.getBoundingClientRect().top;
-        if (pageTwoTop < window.innerHeight / 2) {
-          pageTwoRef.current.scrollIntoView({ behavior: "smooth" });
-        }
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const pageOneHeight = document.getElementById("page-one").offsetHeight;
+
+      if (scrollPosition >= pageOneHeight + 100 && !hasScrolled) {
+        pageTwoRef.current?.scrollIntoView({ behavior: "smooth" });
+        setHasScrolled(true);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hasScrolled]);
 
   return (
     <div className="min-h-screen bg-gray-800 text-white p-6">
       {/* Page One */}
-      <div className="max-w-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg font-sans">
+      <div id="page-one" className="max-w-xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg font-sans">
         <h1 className="text-2xl font-bold">Check Your Redirects and Status Code</h1>
         <p className="text-lg italic mt-2">301 vs 302, meta refresh & JavaScript redirects</p>
 
@@ -55,7 +57,7 @@ export default function CheckRedirects() {
           Check your URL redirect for accuracy. Do you use search engine friendly redirections like 301 or do you lose link juice for SEO by redirects using HTTP Statuscode 302? Check now!
         </p>
 
-        {}
+        {/* Scroll to Page Two Link */}
         <div className="mt-10 text-center">
           <a
             href="#page-two"
@@ -66,7 +68,7 @@ export default function CheckRedirects() {
         </div>
       </div>
 
-      {}
+      {/*2*/}
       <div ref={pageTwoRef} id="page-two" className="mt-10">
         <RedirectChecker />
       </div>

@@ -31,8 +31,7 @@ export default function RedirectChecker() {
 
         <select className="mt-2 px-4 py-2 border border-gray-500 text-gray-900 rounded-md">
           <option>DEFAULT (ToolBot)</option>
-          <option>Google Chrome</option>
-          <option>Mozilla Firefox</option>
+          
         </select>
       </div>
     </div>

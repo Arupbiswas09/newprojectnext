@@ -32,9 +32,8 @@ export default function CheckRedirects() {
         <select id="userAgent" className="px-4 py-2 text-gray-900 rounded-md border border-gray-500">
           <option value="DEFAULT (ToolBot)">DEFAULT (ToolBot)</option>
           <option value="GoogleBot">GoogleBot</option>
-          <option value="BingBot">BingBot</option>
-          <option value="Mozilla/5.0 (Chrome)">Mozilla/5.0 (Chrome)</option>
-          <option value="Mozilla/5.0 (Firefox)">Mozilla/5.0 (Firefox)</option>
+          <option value="ArupBot">ArupBot</option>
+          
         </select>
       </div>
 
